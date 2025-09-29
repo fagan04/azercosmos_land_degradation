@@ -37,5 +37,9 @@ print(classification_report(y_test, y_pred))
 
 df["prediction"] = model.predict(X)
 
-# Save with predictions
+# Map labels to numbers
+label_to_num = {"Degraded": -1, "Stable": 0, "Recovered": 1}
+df["prediction_num"] = df["prediction"].map(label_to_num)
+
+# Save
 df.to_csv("deltaNDVI_2022_2023_with_predictions.csv", index=False)
